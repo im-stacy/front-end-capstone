@@ -2,7 +2,7 @@ import React from 'react';
 
 type RecipeProps = {
     name: string;
-    ingredients: string[];
+    ingredients: {[key:string]: number};
 };
 
 const Recipe: React.FC<RecipeProps> = ({ name, ingredients }) => {
@@ -11,7 +11,7 @@ const Recipe: React.FC<RecipeProps> = ({ name, ingredients }) => {
             <h3 className='recipe-name'>{name}</h3>
             <h4 className='recipe-ingredients'>Ingredients:</h4>
             <ul>
-                {ingredients.map(ingredient => (
+                {Object.entries(ingredients).map(([ingredient, amount]) => (
                     <li key={ingredient}>{ingredient}</li>
                 ))}
             </ul>

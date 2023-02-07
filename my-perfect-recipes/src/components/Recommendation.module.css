@@ -1,0 +1,72 @@
+/* .pop-up-recommendation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    background-color: red;
+    padding: 30px;
+    box-shadow: 0px 0px 10px #00000066;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+@media (max-width: 600px) {
+    .pop-up-recommendation {
+        width: 90%;
+    }
+} */
+
+.pop-up-recommendation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pop-up-recommendation h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.pop-up-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.pop-up-recommendation input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+}
+
+.pop-up-recommendation button {
+    padding: 0.5rem 1rem;
+    background-color: #4caf50;
+    color: #fff;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.pop-up-recommendation button:hover {
+    background-color: #3e8e41;
+}
+
+.pop-up-recommendation button:active {
+    transform: translateY(1px);
+}

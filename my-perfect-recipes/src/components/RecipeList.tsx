@@ -3,7 +3,7 @@ import Recipe from './Recipe'
 
 type RecipeProps = {
     name: string;
-    ingredients: string[];
+    ingredients: {[key:string]: number};
 };
 
 type RecipeListProps = {

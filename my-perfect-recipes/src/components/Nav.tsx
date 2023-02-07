@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Nav.module.css';
 
 
@@ -38,7 +38,7 @@ const Links: React.FC<{ links: Link[] }> = ({ links }) => {
 
 
 const Nav: React.FC<{onSearch: (text: string) => void}> = ({ onSearch }) => {
-    const [text, setText] = React.useState('')
+    const [text, setText] = useState('')
     return (
         <nav className={styles['navbar']}>
             <div className={styles['logo-container']}>
