@@ -108,6 +108,7 @@
 
 import React, { useState } from "react";
 import styles from './Recommendation.module.css'
+import axios from "axios";
 
 
 interface RecommendationProps {
@@ -129,11 +130,17 @@ const Recommendation: React.FC<RecommendationProps> = () => {
     setCurrentIngredient("");
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // onSubmit(ingredients);
     // implement
-  };
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/recipes/recommend', {ingredients});
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    } alert("No recipe containing this/these ingredient(s)");
+  }
 
   return (
         <form className={styles['pop-up-form']} onSubmit={handleSubmit}>
