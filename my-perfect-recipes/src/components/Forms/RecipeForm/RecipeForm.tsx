@@ -1,63 +1,10 @@
-// import React, { useState } from 'react';
-
-// type RecipeProps = {
-//     name: string;
-//     ingredients: {[key:string]: number};
-//     }
-
-// const Post: React.FC = () => {
-//     const [recipe, setRecipe] = useState<RecipeProps>({
-//         name: '',
-//         ingredients: {}
-//     });
-
-//     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-//         const { name, value } = e.target;
-//         setRecipe({ ...recipe, [name]: value });
-//     }
-
-//     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-//         e.preventDefault();
-//     }
-
-//     return (
-//         <form onSubmit={handleSubmit}>
-//         <label>
-//             Recipe Name:
-//             <input type="text" name="name" value={recipe.name} onChange={handleChange} />
-//         </label>
-//         <label>
-//             Ingredients:
-//             <input type="text" name="ingredients" value={recipe.ingredients.value} onChange={handleChange} />
-//         </label>
-//         <button type="submit">Post</button>
-//         </form>
-//     );
-//     }
-
-// export default Post;
-
 import React, { useState } from "react";
-import styles from "./RecipeForm.module.css";
-import List from "./List";
 import axios from "axios";
 import { Recipe } from "../../Board/Board";
-
-interface FormData {
-  name: string;
-  cooking_notes: string;
-  ingredients_data: { [key: string]: number };
-}
 
 interface Ingredient {
   name: string;
   amount: string;
-}
-
-interface ListItemProps {
-  id: string;
-  ingredient: Ingredient;
-  onRemove: (id: string) => void;
 }
 
 interface RecipeFormProps {
@@ -202,7 +149,7 @@ const RecipeForm: React.FC<RecipeFormProps> = (RecipeFormProps) => {
       <button
         type="button"
         onClick={addIngredient}
-        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mr-2"
       >
         Add Ingredient
       </button>

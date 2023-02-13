@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Nav from "./components/Nav";
-import RecipeList from "./components/RecipeList";
-import styles from "./App.module.css";
-import recomStyles from "./components/Recommendation.module.css";
-import Recommendation from "./components/Recommendation";
-import RecipeForm, {
-  Ingredient,
-} from "./components/Forms/RecipeForm/RecipeForm";
-import Button from "./components/shared/Button/button";
 import Board, { Recipe } from "./components/Board/Board";
 import axios from "axios";
 import SideBar from "./components/SideBar/SideBar";
@@ -23,8 +15,6 @@ const mockImages: string[] = [
 const App: React.FC = () => {
   const [searchText, setSearchText] = useState("");
   const [recipeData, setRecipeData] = useState<Recipe[]>([]);
-  const [showPostForm, setShowPostForm] = useState(false);
-  const [showRecomForm, setShowRecomForm] = useState(false);
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const [flag, setFlag] = useState(-1);
@@ -57,14 +47,6 @@ const App: React.FC = () => {
     }
   }
 
-  function handlePostClick() {
-    setShowPostForm(!showPostForm);
-  }
-
-  const handleRecomClick = () => {
-    setShowRecomForm(!showRecomForm);
-  };
-
   const handleIconClick = (n: number) => {
     setFlag(n);
     setIsSubMenuOpen(!isSubMenuOpen);
@@ -89,10 +71,6 @@ const App: React.FC = () => {
         alert("Unable to retrieve your boards");
       });
   }, []);
-
-  const handleSubmit = (name: string, ingredients: Ingredient[]) => {
-    // implementation to post the recipe to the backend
-  };
 
   return (
     <section>

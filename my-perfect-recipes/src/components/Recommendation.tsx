@@ -33,8 +33,8 @@ const Recommendation: React.FC<RecommendationProps> = ({ onSumbit }) => {
       onSumbit(newRecipes);
     } catch (error) {
       console.log(error);
+      alert("not recipes containing this ingredient");
     }
-    alert("not recipes containing this ingredient");
   };
 
   return (
@@ -56,7 +56,7 @@ const Recommendation: React.FC<RecommendationProps> = ({ onSumbit }) => {
       <button
         type="button"
         onClick={handleAddIngredient}
-        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mb-3"
       >
         Add Ingredient
       </button>
