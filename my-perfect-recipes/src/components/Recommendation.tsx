@@ -1,110 +1,4 @@
-// import React, { useState } from 'react';
-
-// type RecipeProps = {
-// name: string;
-// ingredients: {[key:string]: number};
-// }
-
-// type Props = {
-//     recipeData: RecipeProps[]
-// }
-
-// const Recommendation: React.FC<Props> = ({recipeData}) => {
-//     const [ingredients, setIngredients] = useState({});
-//     const [recommendedRecipes, setRecommendedRecipes] = useState<RecipeProps[]>([]);
-//     const [showInput, setShowInput] = useState(false);
-//     const imageUrl = '/Users/stacyji/Downloads/cookingPot.png'
-
-//     function handleInputIngredients(e: React.ChangeEvent<HTMLInputElement>) {
-//         const { name, value } = e.target;
-//         setIngredients((prevIngredients) => ({ ...prevIngredients, [name]: value }));
-//     }
-
-//     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-//         e.preventDefault();
-
-//         const filtered = recipeData.filter((recipe) => {
-//             return Object.keys(ingredients).every((ingredient) =>
-//             recipe.ingredients.hasOwnProperty(ingredient)
-//             );
-//         });
-//         setRecommendedRecipes(filtered);
-//     }
-
-//     return (
-//         <div>
-//             <img src={imageUrl} alt="recom button" onClick={() => setShowInput(!showInput)}/>
-//             {showInput && (
-//             <form onSubmit={handleSubmit}>
-//             <input
-//                 type="text"
-//                 placeholder="Enter ingredients"
-//                 name="ingredients"
-//                 onChange={handleInputIngredients}
-//             />
-//             <button type="submit">Submit</button>
-//             </form>
-//             )}
-//         <ul>
-//             {recommendedRecipes.map((recipe, index) => (
-//                 <li key={index}>{recipe.name}</li>
-//             ))}
-//         </ul>
-//         </div>
-//     );
-// };
-
-// // export default Recommendation;
-// import React, { useState } from 'react';
-// import styles from './Recommendation.module.css';
-
-// type Recipe = {
-//   name: string;
-//   ingredients: {[key:string]: number};
-// }
-
-// type RecommendationProps = {
-//   recipeData: Recipe[];
-// };
-
-// const Recommendation: React.FC<RecommendationProps> = ({ recipeData }) => {
-//   const [showInput, setShowInput] = useState(false);
-//   const [ingredients, setIngredients] = useState('');
-
-//   function handleClick() {
-//     setShowInput(!showInput);
-//   }
-
-//   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-//     setIngredients(event.target.value);
-//   }
-
-//   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-//     event.preventDefault();
-//     // Perform the recommendation logic here with the entered ingredients
-//     console.log(ingredients);
-//   }
-
-//   return (
-//     <div>
-//       <img onClick={handleClick} src='path/to/your/image' alt='Recommend' />
-//       {showInput && (
-//         <div className={styles['pop-up-recommendation']}>
-//           <h2>Enter ingredients:</h2>
-//           <form onSubmit={handleSubmit}>
-//             <input type="text" value={ingredients} onChange={handleChange} />
-//             <button type="submit">Submit</button>
-//           </form>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Recommendation;
-
 import React, { useState } from "react";
-import styles from "./Recommendation.module.css";
 import axios from "axios";
 import { Recipe } from "./Board/Board";
 
@@ -140,23 +34,33 @@ const Recommendation: React.FC<RecommendationProps> = ({ onSumbit }) => {
     } catch (error) {
       console.log(error);
     }
+    alert("not recipes containing this ingredient");
   };
 
   return (
-    <form className={styles["pop-up-form"]} onSubmit={handleSubmit}>
-      <div>
-        <label>
+    <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+      <div className="mb-4">
+        <label
+          className="block text-gray-700 font-bold mb-2"
+          htmlFor="ingredient-name"
+        >
           Ingredient:
-          <input
-            type="text"
-            value={currentIngredient}
-            onChange={handleIngredientChange}
-          />
         </label>
-        <button type="button" onClick={handleAddIngredient}>
-          Add Ingredient
-        </button>
+        <input
+          type="text"
+          value={currentIngredient}
+          onChange={handleIngredientChange}
+          className="w-full border border-gray-400 p-2 rounded-md"
+        />
       </div>
+      <button
+        type="button"
+        onClick={handleAddIngredient}
+        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+      >
+        Add Ingredient
+      </button>
+
       <div>
         <ul>
           {ingredients.map((ingredient, index) => (
@@ -164,7 +68,12 @@ const Recommendation: React.FC<RecommendationProps> = ({ onSumbit }) => {
           ))}
         </ul>
       </div>
-      <button type="submit">Submit</button>
+      <button
+        type="submit"
+        className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600"
+      >
+        Submit
+      </button>
     </form>
   );
 };

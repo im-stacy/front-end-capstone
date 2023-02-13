@@ -114,18 +114,6 @@ const App: React.FC = () => {
           <Board recipes={recipeData} mockImages={mockImages} />
         </div>
       </div>
-      <Button handleClick={handleRecomClick} />
-      {showRecomForm && (
-        <div>
-          <Recommendation onSumbit={setRecipeData} />
-        </div>
-      )}
-      ;
-      <Button handleClick={handlePostClick} />
-      {showPostForm && (
-        <RecipeForm recipes={recipeData} setRecipeData={setRecipeData} />
-      )}
-      ;
     </section>
   );
 };
