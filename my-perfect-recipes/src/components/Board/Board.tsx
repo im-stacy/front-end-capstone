@@ -9,15 +9,18 @@ interface Recipe {
 
 interface Props {
   recipes: Recipe[];
+  mockImages: string[];
 }
 
-// const mockImages: string[] = ["https://images.pexels.com/photos/7218637/pexels-photo-7218637.jpeg"]
-
-const Board: React.FC<Props> = ({ recipes }) => {
+const Board: React.FC<Props> = ({ recipes, mockImages }) => {
   return (
     <div className="board-container flex flex-row flex-wrap">
       {recipes.map((recipe, index) => (
-        <RecipeCard key={index} recipe={recipe} />
+        <RecipeCard
+          key={index}
+          recipe={recipe}
+          image={mockImages[index % mockImages.length]}
+        />
       ))}
     </div>
   );

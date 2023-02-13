@@ -1,6 +1,5 @@
 // import React, { useState } from 'react';
 
-
 // type RecipeProps = {
 // name: string;
 // ingredients: {[key:string]: number};
@@ -15,7 +14,6 @@
 //     const [recommendedRecipes, setRecommendedRecipes] = useState<RecipeProps[]>([]);
 //     const [showInput, setShowInput] = useState(false);
 //     const imageUrl = '/Users/stacyji/Downloads/cookingPot.png'
-    
 
 //     function handleInputIngredients(e: React.ChangeEvent<HTMLInputElement>) {
 //         const { name, value } = e.target;
@@ -72,7 +70,6 @@
 // const Recommendation: React.FC<RecommendationProps> = ({ recipeData }) => {
 //   const [showInput, setShowInput] = useState(false);
 //   const [ingredients, setIngredients] = useState('');
-  
 
 //   function handleClick() {
 //     setShowInput(!showInput);
@@ -107,20 +104,19 @@
 // export default Recommendation;
 
 import React, { useState } from "react";
-import styles from './Recommendation.module.css'
+import styles from "./Recommendation.module.css";
 import axios from "axios";
-
+import { Recipe } from "./Board/Board";
 
 interface RecommendationProps {
   // onSubmit: (ingredients: string[]) => void;
+  onSumbit: React.Dispatch<React.SetStateAction<Recipe[]>>;
 }
 
-const Recommendation: React.FC<RecommendationProps> = () => {
+const Recommendation: React.FC<RecommendationProps> = ({ onSumbit }) => {
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [currentIngredient, setCurrentIngredient] = useState("");
 
-
-  
   const handleIngredientChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentIngredient(e.target.value);
   };
@@ -135,37 +131,42 @@ const Recommendation: React.FC<RecommendationProps> = () => {
     // onSubmit(ingredients);
     // implement
     try {
-      const response = await axios.post('http://127.0.0.1:5000/recipes/recommend', {ingredients});
-      console.log(response.data);
+      const response = await axios.post(
+        "http://127.0.0.1:5000/recipes/recommend",
+        { ingredients }
+      );
+      const newRecipes: Recipe[] = response.data;
+      onSumbit(newRecipes);
     } catch (error) {
       console.log(error);
-    } alert("No recipe containing this/these ingredient(s)");
-  }
+    }
+  };
 
   return (
-        <form className={styles['pop-up-form']} onSubmit={handleSubmit}>
-          <div>
-            <label>
-              Ingredient:
-              <input type="text" value={currentIngredient} onChange={handleIngredientChange} />
-            </label>
-            <button type="button" onClick={handleAddIngredient}>
-              Add Ingredient
-            </button>
-          </div>
-          <div>
-            <ul>
-              {ingredients.map((ingredient, index) => (
-                <li key={index}>
-                  {ingredient}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
+    <form className={styles["pop-up-form"]} onSubmit={handleSubmit}>
+      <div>
+        <label>
+          Ingredient:
+          <input
+            type="text"
+            value={currentIngredient}
+            onChange={handleIngredientChange}
+          />
+        </label>
+        <button type="button" onClick={handleAddIngredient}>
+          Add Ingredient
+        </button>
+      </div>
+      <div>
+        <ul>
+          {ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
   );
 };
-
 
 export default Recommendation;

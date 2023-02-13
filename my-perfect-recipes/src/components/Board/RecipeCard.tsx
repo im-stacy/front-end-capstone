@@ -3,23 +3,19 @@ import { Recipe } from "./Board";
 
 interface RecipeCardProps {
   recipe: Recipe;
-  //   image: string;
+  image: string;
 }
 
-const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
+const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, image }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
-      className="card bg-base-100 basis-1/3 shadow-xl p-5"
+      className="card bg-base-100 basis-1/4 shadow-xl p-5 m-3.5"
       onClick={() => setIsOpen(!isOpen)}
     >
       <figure>
-        <img
-          className="object-fill h-8/12"
-          src="https://images.pexels.com/photos/6287525/pexels-photo-6287525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          alt="Food"
-        />
+        <img className="object-fill h-8/12" src={image} alt="Food" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{recipe.name}</h2>

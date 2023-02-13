@@ -4,6 +4,6 @@
 
 @layer components {
   .sidebar-icon {
-    @apply cursor-pointer relative flex items-center justify-center h-12 w-12 mx-auto shadow-lg hover:bg-slate-700;
+    @apply cursor-pointer relative flex items-center justify-center h-12 w-12 mx-auto shadow-lg hover:bg-slate-700 mt-2 mb-6;
   }
 }

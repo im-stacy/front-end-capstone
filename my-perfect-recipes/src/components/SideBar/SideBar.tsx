@@ -1,23 +1,25 @@
 import { ReactNode } from "react";
 import { IconType } from "react-icons";
 import { GiCookingPot } from "react-icons/gi";
+import { AiOutlineFileAdd } from "react-icons/ai";
 
 interface Props {
-  isSubMenuOpen: boolean;
-  onClick: (bool: boolean) => void;
+  onClick: (n: number) => void;
 }
 
-const SideBar: React.FC<Props> = ({ isSubMenuOpen, onClick }) => {
-  const handleSubMenuToggle = () => {
-    onClick(!isSubMenuOpen);
-  };
-
+const SideBar: React.FC<Props> = ({ onClick }) => {
   return (
     <div className="bg-gray-900 text-white h-screen w-20 flex flex-col justify-between">
       <div className="p-4">
         <SideBarIcon
-          icon={<GiCookingPot size="28" />}
-          handleSubMenuToggle={handleSubMenuToggle}
+          flag={0}
+          icon={<GiCookingPot size="65" />}
+          onClick={onClick}
+        />
+        <SideBarIcon
+          flag={1}
+          icon={<AiOutlineFileAdd size="65" />}
+          onClick={onClick}
         />
       </div>
       <div className="p-4"></div>
@@ -27,15 +29,16 @@ const SideBar: React.FC<Props> = ({ isSubMenuOpen, onClick }) => {
 
 interface SideBarIconProp {
   icon: ReactNode;
-  handleSubMenuToggle: () => void;
+  flag: number;
+  onClick: (n: number) => void;
 }
 
-const SideBarIcon: React.FC<SideBarIconProp> = ({
-  icon,
-  handleSubMenuToggle,
-}) => {
+const SideBarIcon: React.FC<SideBarIconProp> = ({ icon, flag, onClick }) => {
+  const handleIconClick = () => {
+    onClick(flag);
+  };
   return (
-    <div className="sidebar-icon" onClick={handleSubMenuToggle}>
+    <div className="sidebar-icon" onClick={handleIconClick}>
       {icon}
     </div>
   );
